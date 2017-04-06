@@ -2,20 +2,44 @@
 <html>
 <head>
     <title>The AJAXson 5</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript" src="request-gif.js"></script>
+    <link rel="stylesheet" href="css/styles.css"></>
 </head>
-<body>
-    <h1>The AJAXson 5</h1>
+<body class="container-fluid">
+    <h1 class="jumbotron">The AJAXson 5</h1>
 
-    <form id="form-gif-request" />
-        <label>What kind of Jackson 5 related gif do you want?</label>
-        <input name="tag" type="text"/>
-        <input type="submit" value="Get my Gif!" />
+    <form  id="form-gif-request" />
+
+        <div class="panel panel-default">
+        <div class="panel-body"><label>What kind of Jackson 5 related gif do you want?</label></div>
+        <input name="tag" type="text" class="form-control" id="tag"/>
+        </div>
+        <br>
+        <br>
+<!--TODO-6 add a captcha to the form-->
+
+        <div class="panel panel-default">
+        <div class="panel-body"><label>Prove you're not a robot by answering this riddle:</label></div>
+
+        <div class="container row panel-body">
+        <input name="captcha" class="col-md-6" id="captcha" type="text"/>
+        <label class="col-md-6">Jacksons are better than 1.</label>
+        <p class="col-xs-12" id="feedback" hidden="true"></p>
+        </div>
+
+        <br>
+        <br>
+
+        </div>
+        <input type="submit" class="btn btn-primary gold" value="Get my Gif!" />
     </form>
+    <br>
+    <br>
 
-    <img id="gif" src="" hidden="true"/>
-    <p id="feedback" hidden="true`"></p>
-
+    <img  class="img-responsive img-circle" id="gif" src="" hidden="true"/>
 </body>
 </html>

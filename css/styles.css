@@ -1,0 +1,29 @@
+ .jumbotron {
+   text-align: center;
+   background-color: gold;
+}
+
+body {
+   max-width: 100%;
+}
+
+#feedback {
+    color: red;
+    font-size: 15px;
+}
+
+.panel {
+    background-color: pink;
+}
+
+.btn {
+    background-color: gold;
+}
+
+.container {
+    max-width: 100%;
+}
+
+@media (min-width 600px){
+
+}

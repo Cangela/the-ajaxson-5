@@ -6,7 +6,7 @@ $(document).ready(function() {
 });
 
 
-/**
+/*
  * sends an asynchronous request to Giphy.com aksing for a random GIF using the
  * user's search term (along with "jackson 5")
  *
@@ -19,7 +19,12 @@ function fetchAndDisplayGif(event) {
     event.preventDefault();
 
     // get the user's input text from the DOM
-/*1*/var searchQuery = $("tag").val(); //TODO-1 should be e.g. "dance"
+/*1*/
+    //var captchaText = $("#form-gif-request #txtCaptcha").val();
+
+	if($("#tag").val() != "" && ($("#captcha").val() == 5 || $("#captcha").val().toLowerCase() == "five")) {
+
+    var searchQuery = $("#form-gif-request #tag").val(); //TODO-1 should be e.g. "dance"
 
     // configure a few parameters to attach to our request
     var params = {
@@ -36,14 +41,18 @@ function fetchAndDisplayGif(event) {
 
             // jQuery passes us the `response` variable, a regular javascript object created from the JSON the server gave us
             console.log("we received a response!");
-            console.log(response);
+            console.log(response.data.image_url);
 
             // TODO-4
             // 1. set the source attribute of our image to the image_url of the GIF
             // 2. hide the feedback message and display the image
             $("#gif").attr("src", response.data.image_url);
+
+            $("#feedback").attr("hidden", true);
+			//$("#gif").attr("hidden", false);
             setGifLoadedStatus(true);
         },
+
         error: function() {
             // if something went wrong, the code in here will execute instead of the success function
 
@@ -55,7 +64,14 @@ function fetchAndDisplayGif(event) {
 
     // TODO-5
     // give the user a "Loading..." message while they wait
+
     $("#feedback").text("Loading...");
+    setGifLoadedStatus(false);
+    //$("#feedback").attr("hidden", false);
+} else {
+    $("#feedback").text("No Gifs For You!");
+    setGifLoadedStatus(false);
+};
 }
 
 
@@ -64,6 +80,13 @@ function fetchAndDisplayGif(event) {
  * if the GIF is loaded: displays the image and hides the feedback label
  * otherwise: hides the image and displays the feedback label
  */
+ /*function wrongCaptcha() {
+ 	console.log("Wrong Number Entered");
+ 	$("#feedback").text("You are a robot!");
+ 	$("#feedback").attr("hidden", false);
+ 	console.log("Function wrongCaptcha run");
+ }
+*/
 function setGifLoadedStatus(isCurrentlyLoaded) {
     $("#gif").attr("hidden", !isCurrentlyLoaded);
     $("#feedback").attr("hidden", isCurrentlyLoaded);
